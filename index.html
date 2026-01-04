@@ -2,25 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Delhi Air Quality Command Center</title>
+  <title>Delhi Air Quality Operations Dashboard</title>
 
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- ECharts -->
   <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
 
-  <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 
 <body class="bg-slate-900 text-slate-200">
 
-<!-- TOP BAR -->
-<header class="bg-teal-600 px-6 py-3 flex justify-between items-center">
-  <h1 class="text-lg font-semibold">Delhi Air Quality Monitoring</h1>
-  <select id="wardSelect" class="bg-slate-800 text-white px-3 py-1 rounded"></select>
+<!-- HEADER -->
+<header class="bg-teal-600 px-6 py-3">
+  <h1 class="text-lg font-semibold">Delhi Air Quality Operations Dashboard</h1>
+  <p class="text-xs opacity-90">
+    Ward-level pollution intelligence for rapid municipal action
+  </p>
 </header>
 
 <!-- MAIN GRID -->
@@ -28,9 +26,9 @@
 
   <!-- MAP -->
   <div class="col-span-7 bg-slate-950 rounded p-2">
+    <h2 class="text-sm font-semibold mb-2">Ward Pollution Overview</h2>
     <div id="map" class="h-[420px] rounded"></div>
 
-    <!-- AQI LEGEND -->
     <div class="mt-2 text-xs grid grid-cols-6 gap-1">
       <span class="bg-green-600 text-center">Good</span>
       <span class="bg-lime-500 text-center">Satisfactory</span>
@@ -41,46 +39,59 @@
     </div>
   </div>
 
-  <!-- AQI GAUGE -->
-  <div class="col-span-5 bg-slate-950 rounded p-4 flex flex-col items-center justify-center">
-    <div id="aqiGauge" class="h-56 w-full"></div>
+  <!-- CITY STATUS -->
+  <div class="col-span-5 bg-slate-950 rounded p-4">
+    <h2 class="text-sm font-semibold mb-2">City AQI Status</h2>
+    <div id="cityGauge" class="h-56"></div>
 
-    <div class="grid grid-cols-3 gap-4 mt-4 w-full text-center text-sm">
+    <div class="grid grid-cols-3 gap-4 text-sm mt-4">
       <div>
-        <p class="text-slate-400">Priority</p>
-        <span id="priority" class="px-2 py-1 rounded text-white"></span>
+        <p class="text-slate-400">Highest Priority</p>
+        <p id="highCount" class="font-semibold"></p>
       </div>
       <div>
-        <p class="text-slate-400">Department</p>
-        <p id="department"></p>
+        <p class="text-slate-400">Moderate Priority</p>
+        <p id="mediumCount" class="font-semibold"></p>
       </div>
       <div>
-        <p class="text-slate-400">Pollutant</p>
-        <p id="pollutant"></p>
+        <p class="text-slate-400">Low Priority</p>
+        <p id="lowCount" class="font-semibold"></p>
       </div>
     </div>
   </div>
 
-  <!-- GRAPHS -->
+  <!-- CHARTS -->
   <div class="col-span-4 bg-slate-950 rounded p-3">
-    <p class="text-sm mb-1">AQI Trend (24h)</p>
+    <h3 class="text-sm font-semibold mb-1">City AQI Trend</h3>
     <div id="trendChart" class="h-48"></div>
   </div>
 
   <div class="col-span-4 bg-slate-950 rounded p-3">
-    <p class="text-sm mb-1">Pollutant Share</p>
+    <h3 class="text-sm font-semibold mb-1">Pollutant Composition (%)</h3>
     <div id="pollutantChart" class="h-48"></div>
   </div>
 
   <div class="col-span-4 bg-slate-950 rounded p-3">
-    <p class="text-sm mb-1">Source Attribution</p>
+    <h3 class="text-sm font-semibold mb-1">Likely Emission Sources</h3>
     <div id="sourceChart" class="h-48"></div>
   </div>
 
-  <!-- ACTIONS -->
+  <!-- TABLE -->
   <div class="col-span-12 bg-slate-950 rounded p-4">
-    <p class="text-sm mb-2">Recommended Actions</p>
-    <ul id="actions" class="list-disc ml-6 text-sm space-y-1"></ul>
+    <h2 class="text-sm font-semibold mb-3">Ward-Level Air Quality Status</h2>
+
+    <table class="w-full text-sm">
+      <thead class="border-b border-slate-700 text-slate-400">
+        <tr>
+          <th class="py-2 text-left">Ward</th>
+          <th>AQI</th>
+          <th>Risk Category</th>
+          <th>Operational Priority</th>
+          <th>Responsible Authority</th>
+        </tr>
+      </thead>
+      <tbody id="wardTable"></tbody>
+    </table>
   </div>
 
 </section>
