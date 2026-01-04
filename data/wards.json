@@ -1,1 +1,28 @@
-
+[
+  {
+    "ward": "Karol Bagh",
+    "aqi": 312,
+    "risk": "Very Poor",
+    "pollutant": "PM2.5",
+    "source": "Traffic + Construction",
+    "trend": [220, 260, 280, 300, 312],
+    "actions": [
+      "Deploy mobile air quality monitoring vans",
+      "Restrict heavy vehicle entry during peak hours",
+      "Dust suppression at construction sites"
+    ]
+  },
+  {
+    "ward": "Dwarka",
+    "aqi": 185,
+    "risk": "Moderate",
+    "pollutant": "NO2",
+    "source": "Vehicular Emissions",
+    "trend": [150, 160, 170, 180, 185],
+    "actions": [
+      "Traffic signal optimization",
+      "Promote public transport usage",
+      "On-ground emission checks"
+    ]
+  }
+]
