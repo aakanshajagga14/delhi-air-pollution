@@ -2,17 +2,14 @@ let data = [];
 let map;
 let layers = [];
 
-/* ----------------- HELPERS ----------------- */
 function $(id) {
-  const el = document.getElementById(id);
-  if (!el) console.error("Missing element:", id);
-  return el;
+  return document.getElementById(id);
 }
 
 function getPriority(aqi) {
-  if (aqi > 300) return ["High", "text-red-500"];
-  if (aqi > 200) return ["Medium", "text-orange-400"];
-  return ["Low", "text-green-400"];
+  if (aqi > 300) return ["High", "text-red-600"];
+  if (aqi > 200) return ["Medium", "text-orange-500"];
+  return ["Low", "text-green-600"];
 }
 
 function getDepartment(p) {
@@ -21,7 +18,7 @@ function getDepartment(p) {
   return "DPCC";
 }
 
-/* ----------------- MAP ----------------- */
+/* MAP */
 function initMap() {
   map = L.map("map").setView([28.6139, 77.2090], 11);
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
@@ -41,7 +38,7 @@ function drawMap() {
     const c = L.circle([w.lat, w.lng], {
       radius: 1500,
       color,
-      fillOpacity: 0.5
+      fillOpacity: 0.45
     }).bindPopup(`<b>${w.ward}</b><br>AQI: ${w.aqi}`);
 
     c.addTo(map);
@@ -49,7 +46,7 @@ function drawMap() {
   });
 }
 
-/* ----------------- TABLE ----------------- */
+/* TABLE */
 function renderTable() {
   const tbody = $("wardTable");
   tbody.innerHTML = "";
@@ -63,7 +60,7 @@ function renderTable() {
     else low++;
 
     const tr = document.createElement("tr");
-    tr.className = "border-b border-slate-800";
+    tr.className = "border-b";
 
     tr.innerHTML = `
       <td class="py-2">${w.ward}</td>
@@ -72,7 +69,6 @@ function renderTable() {
       <td class="${cls} font-semibold">${p}</td>
       <td>${getDepartment(w.pollutant)}</td>
     `;
-
     tbody.appendChild(tr);
   });
 
@@ -81,7 +77,7 @@ function renderTable() {
   $("lowCount").innerText = `${low} wards`;
 }
 
-/* ----------------- CHARTS (SAFE) ----------------- */
+/* CHARTS */
 function renderGauge(avg) {
   const el = $("cityGauge");
   el.style.height = "220px";
@@ -136,14 +132,10 @@ function renderPie(id, key) {
   });
 }
 
-/* ----------------- LOAD ----------------- */
+/* LOAD */
 fetch("./wards.json")
-  .then(r => {
-    if (!r.ok) throw new Error("JSON not found");
-    return r.json();
-  })
+  .then(r => r.json())
   .then(j => {
-    console.log("Data loaded:", j);
     data = j;
 
     initMap();
@@ -156,7 +148,4 @@ fetch("./wards.json")
     renderTrend();
     renderPie("pollutantChart", "pollutants");
     renderPie("sourceChart", "sources");
-  })
-  .catch(e => {
-    console.error("Fatal load error:", e);
   });
