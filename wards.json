@@ -1,0 +1,66 @@
+[
+  {
+    "ward": "Karol Bagh",
+    "aqi": 312,
+    "risk": "Very Poor",
+    "pollutant": "PM2.5",
+    "lat": 28.6517,
+    "lng": 77.1901,
+    "trend": [250, 270, 290, 305, 312],
+    "pollutants": { "PM2.5": 65, "PM10": 20, "NO2": 15 },
+    "sources": { "Traffic": 45, "Construction": 35, "Residential": 20 },
+    "actions": [
+      "Restrict heavy vehicles during peak hours",
+      "Deploy mobile air monitoring units",
+      "Strict dust-control enforcement"
+    ]
+  },
+  {
+    "ward": "Laxmi Nagar",
+    "aqi": 342,
+    "risk": "Very Poor",
+    "pollutant": "PM2.5",
+    "lat": 28.6366,
+    "lng": 77.2773,
+    "trend": [300, 315, 325, 335, 342],
+    "pollutants": { "PM2.5": 70, "PM10": 18, "NO2": 12 },
+    "sources": { "Traffic": 55, "Commercial": 25, "Construction": 20 },
+    "actions": [
+      "Traffic diversion planning",
+      "No-idling enforcement",
+      "On-ground emission checks"
+    ]
+  },
+  {
+    "ward": "Dwarka",
+    "aqi": 185,
+    "risk": "Moderate",
+    "pollutant": "NO2",
+    "lat": 28.5921,
+    "lng": 77.0460,
+    "trend": [150, 160, 170, 180, 185],
+    "pollutants": { "PM2.5": 30, "PM10": 25, "NO2": 45 },
+    "sources": { "Traffic": 60, "Residential": 25, "Commercial": 15 },
+    "actions": [
+      "Traffic signal optimization",
+      "Promote public transport",
+      "Carpool awareness drives"
+    ]
+  },
+  {
+    "ward": "Rohini",
+    "aqi": 228,
+    "risk": "Poor",
+    "pollutant": "PM10",
+    "lat": 28.7494,
+    "lng": 77.0565,
+    "trend": [190, 205, 215, 220, 228],
+    "pollutants": { "PM2.5": 35, "PM10": 45, "NO2": 20 },
+    "sources": { "Road Dust": 50, "Traffic": 30, "Construction": 20 },
+    "actions": [
+      "Mechanized road sweeping",
+      "Water sprinkling",
+      "Dust stabilization"
+    ]
+  }
+]
