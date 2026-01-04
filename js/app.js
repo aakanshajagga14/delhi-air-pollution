@@ -86,7 +86,7 @@ function loadWard(ward) {
 }
 
 // Load data
-fetch("wards.json")
+fetch("data/wards.json")
   .then(res => res.json())
   .then(json => {
     data = json;
