@@ -2,20 +2,26 @@ let data = [];
 let map;
 let layers = [];
 
-/* ---------- UTILS ---------- */
+/* ----------------- HELPERS ----------------- */
+function $(id) {
+  const el = document.getElementById(id);
+  if (!el) console.error("Missing element:", id);
+  return el;
+}
+
 function getPriority(aqi) {
   if (aqi > 300) return ["High", "text-red-500"];
   if (aqi > 200) return ["Medium", "text-orange-400"];
   return ["Low", "text-green-400"];
 }
 
-function getDepartment(pollutant) {
-  if (pollutant.includes("PM")) return "Municipal Corporation (MCD)";
-  if (pollutant === "NO2") return "Traffic Police";
+function getDepartment(p) {
+  if (p.includes("PM")) return "Municipal Corporation (MCD)";
+  if (p === "NO2") return "Traffic Police";
   return "DPCC";
 }
 
-/* ---------- MAP ---------- */
+/* ----------------- MAP ----------------- */
 function initMap() {
   map = L.map("map").setView([28.6139, 77.2090], 11);
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
@@ -32,28 +38,28 @@ function drawMap() {
       w.aqi > 100 ? "#facc15" :
       "#16a34a";
 
-    const circle = L.circle([w.lat, w.lng], {
+    const c = L.circle([w.lat, w.lng], {
       radius: 1500,
       color,
       fillOpacity: 0.5
     }).bindPopup(`<b>${w.ward}</b><br>AQI: ${w.aqi}`);
 
-    circle.addTo(map);
-    layers.push(circle);
+    c.addTo(map);
+    layers.push(c);
   });
 }
 
-/* ---------- TABLE ---------- */
+/* ----------------- TABLE ----------------- */
 function renderTable() {
-  const tbody = document.getElementById("wardTable");
+  const tbody = $("wardTable");
   tbody.innerHTML = "";
 
-  let high = 0, medium = 0, low = 0;
+  let high = 0, mid = 0, low = 0;
 
   data.forEach(w => {
-    const [priority, cls] = getPriority(w.aqi);
-    if (priority === "High") high++;
-    else if (priority === "Medium") medium++;
+    const [p, cls] = getPriority(w.aqi);
+    if (p === "High") high++;
+    else if (p === "Medium") mid++;
     else low++;
 
     const tr = document.createElement("tr");
@@ -63,98 +69,94 @@ function renderTable() {
       <td class="py-2">${w.ward}</td>
       <td>${w.aqi}</td>
       <td>${w.pollutant}</td>
-      <td class="${cls} font-semibold">${priority}</td>
+      <td class="${cls} font-semibold">${p}</td>
       <td>${getDepartment(w.pollutant)}</td>
     `;
+
     tbody.appendChild(tr);
   });
 
-  document.getElementById("highCount").innerText = `${high} wards`;
-  document.getElementById("mediumCount").innerText = `${medium} wards`;
-  document.getElementById("lowCount").innerText = `${low} wards`;
+  $("highCount").innerText = `${high} wards`;
+  $("mediumCount").innerText = `${mid} wards`;
+  $("lowCount").innerText = `${low} wards`;
 }
 
-/* ---------- CHARTS ---------- */
+/* ----------------- CHARTS (SAFE) ----------------- */
+function renderGauge(avg) {
+  const el = $("cityGauge");
+  el.style.height = "220px";
 
-// CITY AQI GAUGE
-function renderCityGauge(avgAQI) {
-  const el = document.getElementById("cityGauge");
-  const chart = echarts.init(el);
-
-  chart.setOption({
-    series: [{
-      type: "gauge",
-      min: 0,
-      max: 500,
-      progress: { show: true, width: 18 },
-      axisLine: { lineStyle: { width: 18 } },
-      detail: { fontSize: 28 },
-      data: [{ value: Math.round(avgAQI), name: "City AQI" }]
-    }]
+  requestAnimationFrame(() => {
+    echarts.init(el).setOption({
+      series: [{
+        type: "gauge",
+        min: 0,
+        max: 500,
+        progress: { show: true, width: 18 },
+        axisLine: { lineStyle: { width: 18 } },
+        detail: { fontSize: 28 },
+        data: [{ value: Math.round(avg), name: "City AQI" }]
+      }]
+    });
   });
 }
 
-// CITY AQI TREND
-function renderTrendChart() {
-  const el = document.getElementById("trendChart");
-  const chart = echarts.init(el);
+function renderTrend() {
+  const el = $("trendChart");
+  el.style.height = "200px";
 
-  chart.setOption({
-    xAxis: {
-      type: "category",
-      data: ["D1", "D2", "D3", "D4", "D5", "D6"]
-    },
-    yAxis: { type: "value" },
-    series: [{
-      type: "line",
-      smooth: true,
-      data: data[0].trend
-    }]
+  requestAnimationFrame(() => {
+    echarts.init(el).setOption({
+      xAxis: { type: "category", data: ["D1","D2","D3","D4","D5","D6"] },
+      yAxis: { type: "value" },
+      series: [{ type: "line", smooth: true, data: data[0].trend }]
+    });
   });
 }
 
-// AGGREGATED PIE
-function renderAggregatePie(domId, key) {
-  const el = document.getElementById(domId);
-  const chart = echarts.init(el);
+function renderPie(id, key) {
+  const el = $(id);
+  el.style.height = "200px";
 
-  const aggregated = {};
+  const agg = {};
   data.forEach(w => {
-    Object.entries(w[key]).forEach(([k, v]) => {
-      aggregated[k] = (aggregated[k] || 0) + v;
+    Object.entries(w[key]).forEach(([k,v]) => {
+      agg[k] = (agg[k] || 0) + v;
     });
   });
 
-  chart.setOption({
-    series: [{
-      type: "pie",
-      radius: "70%",
-      data: Object.entries(aggregated).map(([k, v]) => ({
-        name: k,
-        value: v
-      }))
-    }]
+  requestAnimationFrame(() => {
+    echarts.init(el).setOption({
+      series: [{
+        type: "pie",
+        radius: "70%",
+        data: Object.entries(agg).map(([k,v]) => ({ name:k, value:v }))
+      }]
+    });
   });
 }
 
-/* ---------- LOAD ---------- */
+/* ----------------- LOAD ----------------- */
 fetch("./wards.json")
-  .then(res => res.json())
-  .then(json => {
-    data = json;
+  .then(r => {
+    if (!r.ok) throw new Error("JSON not found");
+    return r.json();
+  })
+  .then(j => {
+    console.log("Data loaded:", j);
+    data = j;
 
     initMap();
     drawMap();
     renderTable();
 
-    const avgAQI =
-      data.reduce((sum, w) => sum + w.aqi, 0) / data.length;
+    const avg = data.reduce((s,w)=>s+w.aqi,0) / data.length;
 
-    renderCityGauge(avgAQI);
-    renderTrendChart();
-    renderAggregatePie("pollutantChart", "pollutants");
-    renderAggregatePie("sourceChart", "sources");
+    renderGauge(avg);
+    renderTrend();
+    renderPie("pollutantChart", "pollutants");
+    renderPie("sourceChart", "sources");
   })
-  .catch(err => {
-    console.error("Data load failed:", err);
+  .catch(e => {
+    console.error("Fatal load error:", e);
   });
