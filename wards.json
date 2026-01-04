@@ -1,66 +1,38 @@
 [
-  {
-    "ward": "Karol Bagh",
-    "aqi": 312,
-    "risk": "Very Poor",
-    "pollutant": "PM2.5",
-    "lat": 28.6517,
-    "lng": 77.1901,
-    "trend": [250, 270, 290, 305, 312],
-    "pollutants": { "PM2.5": 65, "PM10": 20, "NO2": 15 },
-    "sources": { "Traffic": 45, "Construction": 35, "Residential": 20 },
-    "actions": [
-      "Restrict heavy vehicles during peak hours",
-      "Deploy mobile air monitoring units",
-      "Strict dust-control enforcement"
-    ]
+  { "ward":"Karol Bagh","aqi":312,"lat":28.6517,"lng":77.1901,"pollutant":"PM2.5",
+    "trend":[260,270,280,295,305,312],
+    "pollutants":{"PM2.5":65,"PM10":20,"NO2":15},
+    "sources":{"Traffic":45,"Construction":35,"Residential":20},
+    "actions":["Heavy vehicle restriction","Dust suppression","Mobile AQI vans"]
   },
-  {
-    "ward": "Laxmi Nagar",
-    "aqi": 342,
-    "risk": "Very Poor",
-    "pollutant": "PM2.5",
-    "lat": 28.6366,
-    "lng": 77.2773,
-    "trend": [300, 315, 325, 335, 342],
-    "pollutants": { "PM2.5": 70, "PM10": 18, "NO2": 12 },
-    "sources": { "Traffic": 55, "Commercial": 25, "Construction": 20 },
-    "actions": [
-      "Traffic diversion planning",
-      "No-idling enforcement",
-      "On-ground emission checks"
-    ]
+  { "ward":"Laxmi Nagar","aqi":342,"lat":28.6366,"lng":77.2773,"pollutant":"PM2.5",
+    "trend":[300,310,320,330,338,342],
+    "pollutants":{"PM2.5":70,"PM10":18,"NO2":12},
+    "sources":{"Traffic":55,"Commercial":25,"Construction":20},
+    "actions":["Traffic diversion","No-idling enforcement","Emission checks"]
   },
-  {
-    "ward": "Dwarka",
-    "aqi": 185,
-    "risk": "Moderate",
-    "pollutant": "NO2",
-    "lat": 28.5921,
-    "lng": 77.0460,
-    "trend": [150, 160, 170, 180, 185],
-    "pollutants": { "PM2.5": 30, "PM10": 25, "NO2": 45 },
-    "sources": { "Traffic": 60, "Residential": 25, "Commercial": 15 },
-    "actions": [
-      "Traffic signal optimization",
-      "Promote public transport",
-      "Carpool awareness drives"
-    ]
+  { "ward":"Dwarka","aqi":185,"lat":28.5921,"lng":77.0460,"pollutant":"NO2",
+    "trend":[150,160,165,170,180,185],
+    "pollutants":{"PM2.5":30,"PM10":25,"NO2":45},
+    "sources":{"Traffic":60,"Residential":25,"Commercial":15},
+    "actions":["Signal optimization","Public transport push"]
   },
-  {
-    "ward": "Rohini",
-    "aqi": 228,
-    "risk": "Poor",
-    "pollutant": "PM10",
-    "lat": 28.7494,
-    "lng": 77.0565,
-    "trend": [190, 205, 215, 220, 228],
-    "pollutants": { "PM2.5": 35, "PM10": 45, "NO2": 20 },
-    "sources": { "Road Dust": 50, "Traffic": 30, "Construction": 20 },
-    "actions": [
-      "Mechanized road sweeping",
-      "Water sprinkling",
-      "Dust stabilization"
-    ]
+  { "ward":"Rohini","aqi":228,"lat":28.7494,"lng":77.0565,"pollutant":"PM10",
+    "trend":[190,200,210,220,225,228],
+    "pollutants":{"PM2.5":35,"PM10":45,"NO2":20},
+    "sources":{"Road Dust":50,"Traffic":30,"Construction":20},
+    "actions":["Road sweeping","Water sprinkling"]
+  },
+  { "ward":"Saket","aqi":162,"lat":28.5244,"lng":77.2066,"pollutant":"PM2.5",
+    "trend":[140,145,150,155,158,162],
+    "pollutants":{"PM2.5":50,"PM10":30,"NO2":20},
+    "sources":{"Residential":40,"Traffic":35,"Waste Burning":25},
+    "actions":["Waste burning checks","Community awareness"]
+  },
+  { "ward":"Punjabi Bagh","aqi":271,"lat":28.6730,"lng":77.1316,"pollutant":"PM10",
+    "trend":[230,245,255,265,270,271],
+    "pollutants":{"PM2.5":40,"PM10":42,"NO2":18},
+    "sources":{"Industrial":40,"Traffic":35,"Dust":25},
+    "actions":["Industrial inspection","Night freight checks"]
   }
 ]
