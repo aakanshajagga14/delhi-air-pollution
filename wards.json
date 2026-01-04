@@ -2,37 +2,31 @@
   { "ward":"Karol Bagh","aqi":312,"lat":28.6517,"lng":77.1901,"pollutant":"PM2.5",
     "trend":[260,270,280,295,305,312],
     "pollutants":{"PM2.5":65,"PM10":20,"NO2":15},
-    "sources":{"Traffic":45,"Construction":35,"Residential":20},
-    "actions":["Heavy vehicle restriction","Dust suppression","Mobile AQI vans"]
+    "sources":{"Traffic":45,"Construction":35,"Residential":20}
   },
   { "ward":"Laxmi Nagar","aqi":342,"lat":28.6366,"lng":77.2773,"pollutant":"PM2.5",
-    "trend":[300,310,320,330,338,342],
+    "trend":[300,315,325,335,340,342],
     "pollutants":{"PM2.5":70,"PM10":18,"NO2":12},
-    "sources":{"Traffic":55,"Commercial":25,"Construction":20},
-    "actions":["Traffic diversion","No-idling enforcement","Emission checks"]
+    "sources":{"Traffic":55,"Commercial":25,"Construction":20}
   },
   { "ward":"Dwarka","aqi":185,"lat":28.5921,"lng":77.0460,"pollutant":"NO2",
     "trend":[150,160,165,170,180,185],
     "pollutants":{"PM2.5":30,"PM10":25,"NO2":45},
-    "sources":{"Traffic":60,"Residential":25,"Commercial":15},
-    "actions":["Signal optimization","Public transport push"]
+    "sources":{"Traffic":60,"Residential":25,"Commercial":15}
   },
   { "ward":"Rohini","aqi":228,"lat":28.7494,"lng":77.0565,"pollutant":"PM10",
     "trend":[190,200,210,220,225,228],
     "pollutants":{"PM2.5":35,"PM10":45,"NO2":20},
-    "sources":{"Road Dust":50,"Traffic":30,"Construction":20},
-    "actions":["Road sweeping","Water sprinkling"]
+    "sources":{"Road Dust":50,"Traffic":30,"Construction":20}
   },
   { "ward":"Saket","aqi":162,"lat":28.5244,"lng":77.2066,"pollutant":"PM2.5",
     "trend":[140,145,150,155,158,162],
     "pollutants":{"PM2.5":50,"PM10":30,"NO2":20},
-    "sources":{"Residential":40,"Traffic":35,"Waste Burning":25},
-    "actions":["Waste burning checks","Community awareness"]
+    "sources":{"Residential":40,"Traffic":35,"Waste Burning":25}
   },
   { "ward":"Punjabi Bagh","aqi":271,"lat":28.6730,"lng":77.1316,"pollutant":"PM10",
     "trend":[230,245,255,265,270,271],
     "pollutants":{"PM2.5":40,"PM10":42,"NO2":18},
-    "sources":{"Industrial":40,"Traffic":35,"Dust":25},
-    "actions":["Industrial inspection","Night freight checks"]
+    "sources":{"Industrial":40,"Traffic":35,"Dust":25}
   }
 ]
