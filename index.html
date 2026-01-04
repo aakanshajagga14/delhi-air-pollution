@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Delhi Ward Pollution Action Dashboard</title>
+  <title>Delhi Ward Pollution Intelligence</title>
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -15,54 +15,75 @@
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-slate-100 text-slate-800">
 
-<!-- Header -->
 <header class="bg-white shadow px-6 py-4 flex justify-between items-center">
-  <h1 class="text-xl font-semibold">Delhi Ward Pollution Action Dashboard</h1>
-  <select id="wardSelect" class="border rounded px-3 py-1"></select>
+  <h1 class="text-xl font-bold">Delhi Ward Pollution Intelligence Dashboard</h1>
+  <select id="wardSelect" class="border px-3 py-2 rounded"></select>
 </header>
 
-<!-- KPI Section -->
-<section class="grid grid-cols-4 gap-4 p-6">
+<!-- KPIs -->
+<section class="grid grid-cols-5 gap-4 p-6">
   <div class="bg-white p-4 rounded shadow">
-    <p class="text-sm text-gray-500">AQI</p>
-    <h2 id="aqiValue" class="text-2xl font-bold px-2 py-1 rounded inline-block">--</h2>
+    <p class="text-xs text-gray-500">AQI</p>
+    <h2 id="aqiValue" class="text-2xl font-bold px-2 py-1 inline-block rounded text-white">--</h2>
   </div>
 
   <div class="bg-white p-4 rounded shadow">
-    <p class="text-sm text-gray-500">Risk Level</p>
-    <h2 id="riskLevel" class="text-xl font-semibold">--</h2>
+    <p class="text-xs text-gray-500">Risk</p>
+    <h2 id="riskLevel" class="font-semibold">--</h2>
   </div>
 
   <div class="bg-white p-4 rounded shadow">
-    <p class="text-sm text-gray-500">Dominant Pollutant</p>
-    <h2 id="pollutant" class="text-xl font-semibold">--</h2>
+    <p class="text-xs text-gray-500">Dominant Pollutant</p>
+    <h2 id="pollutant" class="font-semibold">--</h2>
   </div>
 
   <div class="bg-white p-4 rounded shadow">
-    <p class="text-sm text-gray-500">Likely Source</p>
-    <h2 id="source" class="text-xl font-semibold">--</h2>
+    <p class="text-xs text-gray-500">Priority</p>
+    <span id="priority" class="px-2 py-1 rounded text-white text-sm">--</span>
+  </div>
+
+  <div class="bg-white p-4 rounded shadow">
+    <p class="text-xs text-gray-500">Responsible Dept</p>
+    <h2 id="department" class="font-semibold">--</h2>
   </div>
 </section>
 
-<!-- Charts + Actions -->
-<section class="grid grid-cols-3 gap-6 px-6">
-  <div class="col-span-2 bg-white p-4 rounded shadow">
-    <h3 class="font-semibold mb-2">AQI Trend (Last 5 Days)</h3>
-    <div id="aqiChart" class="h-64"></div>
+<!-- Charts -->
+<section class="grid grid-cols-2 gap-6 px-6">
+  <div class="bg-white p-4 rounded shadow">
+    <h3 class="font-semibold mb-2">AQI Trend</h3>
+    <div id="chartTrend" class="h-64"></div>
   </div>
 
+  <div class="bg-white p-4 rounded shadow">
+    <h3 class="font-semibold mb-2">Pollutant Breakdown</h3>
+    <div id="chartPollutant" class="h-64"></div>
+  </div>
+
+  <div class="bg-white p-4 rounded shadow">
+    <h3 class="font-semibold mb-2">Source Contribution</h3>
+    <div id="chartSource" class="h-64"></div>
+  </div>
+
+  <div class="bg-white p-4 rounded shadow">
+    <h3 class="font-semibold mb-2">Ward Comparison</h3>
+    <div id="chartCompare" class="h-64"></div>
+  </div>
+</section>
+
+<!-- Actions + Map -->
+<section class="grid grid-cols-3 gap-6 p-6">
   <div class="bg-white p-4 rounded shadow">
     <h3 class="font-semibold mb-2">Recommended Actions</h3>
     <ul id="actions" class="list-disc ml-4 text-sm space-y-2"></ul>
   </div>
-</section>
 
-<!-- Map -->
-<section class="p-6">
-  <h3 class="font-semibold mb-2">Ward-Level Pollution Hotspots</h3>
-  <div id="map" class="h-96 rounded shadow"></div>
+  <div class="col-span-2 bg-white p-4 rounded shadow">
+    <h3 class="font-semibold mb-2">Ward Pollution Heatmap</h3>
+    <div id="map" class="h-96 rounded"></div>
+  </div>
 </section>
 
 <script src="app.js"></script>
