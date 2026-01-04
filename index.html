@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Delhi Ward Pollution Action Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+<!-- Header -->
+<header class="bg-white shadow p-4 flex justify-between items-center">
+  <h1 class="text-xl font-semibold">Ward-Wise Pollution Action Dashboard</h1>
+  <select id="wardSelect" class="border rounded px-3 py-1"></select>
+</header>
+
+<!-- KPI Section -->
+<section class="grid grid-cols-4 gap-4 p-6">
+  <div class="bg-white p-4 rounded shadow">
+    <p class="text-sm text-gray-500">AQI</p>
+    <h2 id="aqiValue" class="text-2xl font-bold">--</h2>
+  </div>
+  <div class="bg-white p-4 rounded shadow">
+    <p class="text-sm text-gray-500">Risk Level</p>
+    <h2 id="riskLevel" class="text-xl font-semibold">--</h2>
+  </div>
+  <div class="bg-white p-4 rounded shadow">
+    <p class="text-sm text-gray-500">Dominant Pollutant</p>
+    <h2 id="pollutant" class="text-xl font-semibold">--</h2>
+  </div>
+  <div class="bg-white p-4 rounded shadow">
+    <p class="text-sm text-gray-500">Likely Source</p>
+    <h2 id="source" class="text-xl font-semibold">--</h2>
+  </div>
+</section>
+
+<!-- Charts + Actions -->
+<section class="grid grid-cols-3 gap-6 px-6">
+  <div class="col-span-2 bg-white p-4 rounded shadow">
+    <div id="aqiChart" class="h-64"></div>
+  </div>
+
+  <div class="bg-white p-4 rounded shadow">
+    <h3 class="font-semibold mb-2">Recommended Actions</h3>
+    <ul id="actions" class="text-sm space-y-2 list-disc ml-4"></ul>
+  </div>
+</section>
+
+<script src="js/app.js"></script>
+</body>
+</html>
