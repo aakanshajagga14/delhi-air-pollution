@@ -4,19 +4,23 @@
   <meta charset="UTF-8" />
   <title>Delhi Air Quality Operations Dashboard</title>
 
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- ECharts -->
   <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
 
+  <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 
-<body class="bg-slate-900 text-slate-200">
+<body class="bg-slate-100 text-slate-800">
 
 <!-- HEADER -->
-<header class="bg-teal-600 px-6 py-3">
-  <h1 class="text-lg font-semibold">Delhi Air Quality Operations Dashboard</h1>
-  <p class="text-xs opacity-90">
+<header class="bg-white border-b px-6 py-4">
+  <h1 class="text-xl font-semibold">Delhi Air Quality Operations Dashboard</h1>
+  <p class="text-sm text-slate-500">
     Ward-level pollution intelligence for rapid municipal action
   </p>
 </header>
@@ -25,67 +29,67 @@
 <section class="grid grid-cols-12 gap-4 p-4">
 
   <!-- MAP -->
-  <div class="col-span-7 bg-slate-950 rounded p-2">
+  <div class="col-span-7 bg-white rounded shadow p-3">
     <h2 class="text-sm font-semibold mb-2">Ward Pollution Overview</h2>
     <div id="map" class="h-[420px] rounded"></div>
 
     <div class="mt-2 text-xs grid grid-cols-6 gap-1">
-      <span class="bg-green-600 text-center">Good</span>
-      <span class="bg-lime-500 text-center">Satisfactory</span>
-      <span class="bg-yellow-400 text-black text-center">Moderate</span>
-      <span class="bg-orange-500 text-center">Poor</span>
-      <span class="bg-red-600 text-center">Very Poor</span>
-      <span class="bg-rose-900 text-center">Severe</span>
+      <span class="bg-green-600 text-white text-center py-1">Good</span>
+      <span class="bg-lime-500 text-white text-center py-1">Satisfactory</span>
+      <span class="bg-yellow-400 text-black text-center py-1">Moderate</span>
+      <span class="bg-orange-500 text-white text-center py-1">Poor</span>
+      <span class="bg-red-600 text-white text-center py-1">Very Poor</span>
+      <span class="bg-rose-900 text-white text-center py-1">Severe</span>
     </div>
   </div>
 
   <!-- CITY STATUS -->
-  <div class="col-span-5 bg-slate-950 rounded p-4">
+  <div class="col-span-5 bg-white rounded shadow p-4">
     <h2 class="text-sm font-semibold mb-2">City AQI Status</h2>
     <div id="cityGauge" class="h-56"></div>
 
     <div class="grid grid-cols-3 gap-4 text-sm mt-4">
       <div>
-        <p class="text-slate-400">Highest Priority</p>
+        <p class="text-slate-500">High Priority</p>
         <p id="highCount" class="font-semibold"></p>
       </div>
       <div>
-        <p class="text-slate-400">Moderate Priority</p>
+        <p class="text-slate-500">Moderate Priority</p>
         <p id="mediumCount" class="font-semibold"></p>
       </div>
       <div>
-        <p class="text-slate-400">Low Priority</p>
+        <p class="text-slate-500">Low Priority</p>
         <p id="lowCount" class="font-semibold"></p>
       </div>
     </div>
   </div>
 
   <!-- CHARTS -->
-  <div class="col-span-4 bg-slate-950 rounded p-3">
+  <div class="col-span-4 bg-white rounded shadow p-3">
     <h3 class="text-sm font-semibold mb-1">City AQI Trend</h3>
     <div id="trendChart" class="h-48"></div>
   </div>
 
-  <div class="col-span-4 bg-slate-950 rounded p-3">
+  <div class="col-span-4 bg-white rounded shadow p-3">
     <h3 class="text-sm font-semibold mb-1">Pollutant Composition (%)</h3>
     <div id="pollutantChart" class="h-48"></div>
   </div>
 
-  <div class="col-span-4 bg-slate-950 rounded p-3">
+  <div class="col-span-4 bg-white rounded shadow p-3">
     <h3 class="text-sm font-semibold mb-1">Likely Emission Sources</h3>
     <div id="sourceChart" class="h-48"></div>
   </div>
 
   <!-- TABLE -->
-  <div class="col-span-12 bg-slate-950 rounded p-4">
+  <div class="col-span-12 bg-white rounded shadow p-4">
     <h2 class="text-sm font-semibold mb-3">Ward-Level Air Quality Status</h2>
 
     <table class="w-full text-sm">
-      <thead class="border-b border-slate-700 text-slate-400">
+      <thead class="border-b text-slate-500">
         <tr>
           <th class="py-2 text-left">Ward</th>
           <th>AQI</th>
-          <th>Risk Category</th>
+          <th>Dominant Pollutant</th>
           <th>Operational Priority</th>
           <th>Responsible Authority</th>
         </tr>
