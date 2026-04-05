@@ -14,6 +14,7 @@ A lightweight, deployable dashboard that converts public AQI data into:
 - Pollution source interpretation
 - Clear, department-mapped action recommendations
 
+
 ## Key Features
 - Ward-wise AQI visualization
 - Pollution severity color coding
